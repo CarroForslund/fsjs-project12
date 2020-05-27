@@ -9,6 +9,7 @@ class App extends React.Component {
 
   componentDidMount() {
      //Trying to connect to the api
+     axios.post()
      axios.get('http://localhost:5000/api/users')
      .then(response => {
        console.log(response);
