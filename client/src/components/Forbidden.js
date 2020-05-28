@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Forbidden() {
+const Forbidden = () => {
     <div className="bounds">
         <h1>Forbidden</h1>
         <p>Oh oh! You can't access this page.</p>
