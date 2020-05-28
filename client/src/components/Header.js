@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
     // Displays the top menu bar for the application and includes
@@ -9,7 +10,7 @@ const Header = () => (
       <div className="bounds">
         <h1 className="header--logo">Courses</h1>
         <nav>
-          <a className="signup" href="sign-up.html">Sign Up</a><a className="signin" href="sign-in.html">Sign In</a>
+          <Link className="signup" to="sign-up.html">Sign Up</Link><Link className="signin" to="sign-in.html">Sign In</Link>
         </nav>
       </div>
     </div>

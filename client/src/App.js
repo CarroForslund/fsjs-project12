@@ -1,7 +1,12 @@
 import React from 'react';
+import { BrowserRouter, Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header'
+
+// App components
+import Header from './components/Header';
+import Courses from './components/Courses';
+
 import axios from 'axios';
 
 function App () {
@@ -19,7 +24,13 @@ function App () {
   // }
   
   return (
-   <Header />
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Route exact path='/' component={ Courses } />    
+      </div>
+    </BrowserRouter>
+    
   );
 }
 
