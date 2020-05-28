@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 const Header = () => (
     // Displays the top menu bar for the application and includes
@@ -10,10 +10,16 @@ const Header = () => (
       <div className="bounds">
         <h1 className="header--logo">Courses</h1>
         <nav>
-          <Link className="signup" to="sign-up.html">Sign Up</Link><Link className="signin" to="sign-in.html">Sign In</Link>
+          {/* if no authenticated user */}
+          <Link className="signup" to="/signup">Sign Up</Link><Link className="signin" to="/signin">Sign In</Link>
+          {/* else display user name and sign out button */}
+          {/* <span>Jane Doe</span><Link className="signout" to="/signin">Sign Out</Link> */}
         </nav>
       </div>
+
     </div>
+
+    
 );
 
 export default Header;

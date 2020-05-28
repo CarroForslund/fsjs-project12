@@ -1,3 +1,5 @@
+import React from 'react';
+
 class UpdateCourse extends React.Component {
     // This component provides the "Update Course"
     // screen by rendering a form that allows a user to update one of their

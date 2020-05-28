@@ -1,3 +1,5 @@
+import React from 'react';
+
 class CreateCourse extends React.Component {
     state = {}; 
     // This component provides the "Create Course"
