@@ -30,7 +30,7 @@ const server = http.createServer(app);
 //Passing parameters separately (sqlite)
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: '../fsjstd-restapi.db',
+  storage: './fsjstd-restapi.db',
 });
 
 // async IIFE (Immediately Invoked Function Expression)
