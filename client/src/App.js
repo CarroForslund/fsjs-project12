@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Router, Route, Redirect } from 'react-router-dom';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
-// App components
+// App Components
 import Header from './components/Header';
 import Courses from './components/Courses';
 import CreateCourse from './components/CreateCourse';
@@ -12,47 +11,44 @@ import UpdateCourse from './components/UpdateCourse';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
+import Forbidden from './components/Forbidden';
+import NotFound from './components/NotFound';
+import UnhandledError from './components/UnhandledError';
 
-import axios from 'axios';
+// Context (to be able to get app data without passing props)
+import withContext from './Context';
+
+// App Components with Context
+const HeaderWithContext = withContext(Header);
+const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
+const CreateCourseWithContext = withContext(CreateCourse);
+const CourseDetailWithContext = withContext(CourseDetail);
+const UpdateCourseWithContext = withContext(UpdateCourse);
+const CoursesWithContext = withContext(Courses);
 
 function App () {
-
-  // componentDidMount() {
-  //    //Trying to connect to the api
-  //    axios.post()
-  //    axios.get('http://localhost:5000/api/users')
-  //    .then(response => {
-  //      console.log(response);
-  //    })
-  //    .catch(error => {
-  //      console.log('Error fetching and parsing data', error);
-  //    })
-  // }
   
   return (
-
-    // Your app should include the following routes (listed in the format path -
-    //   component):
-    //   / - Courses
-    //   /courses/create - CreateCourse
-    //   /courses/:id/update - UpdateCourse
-    //   /courses/:id - CourseDetail
-    //   /signin - UserSignIn
-    //   /signup - UserSignUp
-    //   /signout - UserSignOut
-    <BrowserRouter>
+    <Router>
       <div>
-        <Header />
+        <HeaderWithContext />
         <Redirect from='/' to='/courses' />
-        <Route exact path='/courses' component={ Courses } />
-        <Route exact path='/courses/create' component={ CreateCourse } />
-        <Route exact path='/courses/:id' component={ CourseDetail } />
-        <Route path='/courses/:id/update' component={ UpdateCourse } />
-        <Route path='/signin' component={ UserSignIn } />
-        <Route path='/signup' component={ UserSignUp } />
-        <Route path='/signout' component={ UserSignOut } /> 
+        <Switch>
+          <Route exact path='/courses' component={ CoursesWithContext } />
+          <Route path='/courses/create' component={ CreateCourseWithContext } />
+          <Route exact path='/courses/:id' component={ CourseDetailWithContext } />
+          <Route path='/courses/:id/update' component={ UpdateCourseWithContext } />
+          <Route path='/signin' component={ UserSignInWithContext } />
+          <Route path='/signup' component={ UserSignUpWithContext } />
+          <Route path='/signout' component={ UserSignOutWithContext } /> 
+          <Route path='/forbidden' component={ Forbidden } />
+          <Route path="/notfound" component={ NotFound } />
+          <Route path="/error" component={ UnhandledError } />
+        </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
     
   );
 }
