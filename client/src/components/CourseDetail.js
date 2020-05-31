@@ -92,19 +92,23 @@ export default class CourseDetail extends React.Component {
     };
 
     editButtons(){
-        if (this.state.authUser.id === this.state.courseUser.id && this.state.authUser.id !== '' && this.state.courseUser.id !== ''){
-            return (<span>
-                <Link className="button" to={'/courses/' + this.state.course.id + '/update'}>Update Course</Link>
-                <button className="button" onClick={this.delete}>Delete Course</button>
-            </span>);
+        const { context } = this.props;
+        if(context.authenticatedUser){
+            if (this.state.authUser.id === this.state.courseUser.id && this.state.authUser.id !== '' && this.state.courseUser.id !== ''){
+                return (<span>
+                    <Link className="button" to={'/courses/' + this.state.course.id + '/update'}>Update Course</Link>
+                    <button className="button" onClick={this.delete}>Delete Course</button>
+                </span>);
+            }
         }
+        return null;    
     }
 
     delete(){   
         const { context } = this.props;
         const emailAddress = context.authenticatedUser.emailAddress;
         const password = context.authenticatedUser.password;
-        
+
         context.data.deleteCourse(emailAddress, password, this.state.course.id)
           .then( () => {
             this.props.history.push('/courses');
