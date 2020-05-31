@@ -1,23 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+const ReactMarkdown = require('react-markdown')
 
-    // This component provides the "Course Detail"
-    // screen by retrieving the detail for a course from the REST API's
-    // /api/courses/:id route and rendering the course. The component
-    // also renders a "Delete Course" button that when clicked should
-    // send a DELETE request to the REST API's /api/courses/:id
-    // route in order to delete a course. This component also renders an
-    // "Update Course" button for navigating to the "Update Course"
-    // screen.
+// This component provides the "Course Detail"
+// screen by retrieving the detail for a course from the REST API's
+// /api/courses/:id route and rendering the course. The component
+// also renders a "Delete Course" button that when clicked should
+// send a DELETE request to the REST API's /api/courses/:id
+// route in order to delete a course. This component also renders an
+// "Update Course" button for navigating to the "Update Course"
+// screen.
 export default class CourseDetail extends React.Component {
     _isMounted = false;
 
     state = {
+        authUser: '',
         courseUser: '',
         course: '',
         errors: [],
-    }
-
+    };
+    
+    delete = this.delete.bind(this);
+    
     componentDidMount() {
         this._isMounted = true;
         const { context } = this.props;
@@ -25,7 +29,11 @@ export default class CourseDetail extends React.Component {
         context.data.getCourse(this.props.match.params.id)
           .then( course => {
             if (course && this._isMounted) {
-                this.setState({ course, courseUser: course.user });
+                this.setState({ 
+                    course,
+                    courseUser: course.user,
+                    authUser: context.authenticatedUser
+                });
             }
           })
           .catch( err => { // handle rejected promises
@@ -41,15 +49,13 @@ export default class CourseDetail extends React.Component {
     render(){
         const course = this.state.course;
         const courseUser = this.state.courseUser;
+        
         return(
             <div>
                 <div className="actions--bar">
                     <div className="bounds">
                     <div className="grid-100">
-                        <span>
-                            <Link className="button" to={'/courses/' + this.state.course.id + '/update'}>Update Course</Link>
-                            <Link className="button" to={'/courses/' + this.state.course.id + '/delete'}>Delete Course</Link>
-                        </span>
+                        {this.editButtons()}
                         <Link className="button button-secondary" to="/courses">Return to List</Link>
                     </div>
                     </div>
@@ -62,7 +68,7 @@ export default class CourseDetail extends React.Component {
                         <p>By {courseUser.firstName + ' ' + courseUser.lastName}</p>
                     </div>
                     <div className="course--description">
-                        {course.description}
+                        {<ReactMarkdown source={course.description}/>}
                     </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -74,7 +80,7 @@ export default class CourseDetail extends React.Component {
                         </li>
                         <li className="course--stats--list--item">
                             <h4>Materials Needed</h4>
-                            {course.materialsNeeded}
+                            {<ReactMarkdown source={course.materialsNeeded}/>}
                         </li>
                         </ul>
                     </div>
@@ -85,5 +91,26 @@ export default class CourseDetail extends React.Component {
         );
     };
 
-    
+    editButtons(){
+        if (this.state.authUser.id === this.state.courseUser.id && this.state.authUser.id !== '' && this.state.courseUser.id !== ''){
+            return (<span>
+                <Link className="button" to={'/courses/' + this.state.course.id + '/update'}>Update Course</Link>
+                <button className="button" onClick={this.delete}>Delete Course</button>
+            </span>);
+        }
+    }
+
+    delete(){
+        
+        console.log('hello delete');
+        // const { context } = this.props;
+        // context.data.deleteCourse(this.state.course.id)
+        //   .then( () => {
+        //     this.props.history.push('/courses');
+        //   })
+        //   .catch( err => { // handle rejected promises
+        //     console.log(err);
+        //     this.props.history.push('/error'); // push to history stack
+        //   });
+    };
 }

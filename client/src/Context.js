@@ -36,6 +36,7 @@ export class Provider extends Component {
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password);
     if (user !== null) {
+      user.password = password; //This solves my auth problems, but there must be a better solution that won't display the actual password
       this.setState(() => {
         return {
           authenticatedUser: user,

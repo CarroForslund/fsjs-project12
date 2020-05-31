@@ -94,7 +94,6 @@ router.post('/', authenticateUser, asyncHandler(async (req, res, next) => {
 // PUT /api/courses/:id
 // 204 - Updates a course 
 // and returns no content
-// FIX THIS PROBLEM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.put('/:id', authenticateUser, asyncHandler(async (req, res, next) => {
   try {
     const course = await Course.findByPk(req.params.id);

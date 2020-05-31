@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+// This component provides the "Sign In" screen by
+// rendering a form that allows a user to sign using their existing
+// account information. The component also renders a "Sign In" button
+// that when clicked signs in the user and a "Cancel" button that
+// returns the user to the default route (i.e. the list of courses).
 export default class UserSignIn extends React.Component {
-    // This component provides the "Sign In" screen by
-    // rendering a form that allows a user to sign using their existing
-    // account information. The component also renders a "Sign In" button
-    // that when clicked signs in the user and a "Cancel" button that
-    // returns the user to the default route (i.e. the list of courses).
     state = {
         emailAddress: '',
         password: '',
@@ -76,9 +76,7 @@ export default class UserSignIn extends React.Component {
                 return { errors: [ 'Sign-in was unsuccessful' ] };
               });
             } else {
-                // this.props.history.push('/authenticated');
                 this.props.history.push(from);
-                // this.props.history.push('/');
                 console.log(`SUCCESS! ${emailAddress} is now signed in!`);
             }
           })
