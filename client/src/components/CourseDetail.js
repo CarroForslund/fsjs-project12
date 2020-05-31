@@ -100,17 +100,18 @@ export default class CourseDetail extends React.Component {
         }
     }
 
-    delete(){
+    delete(){   
+        const { context } = this.props;
+        const emailAddress = context.authenticatedUser.emailAddress;
+        const password = context.authenticatedUser.password;
         
-        console.log('hello delete');
-        // const { context } = this.props;
-        // context.data.deleteCourse(this.state.course.id)
-        //   .then( () => {
-        //     this.props.history.push('/courses');
-        //   })
-        //   .catch( err => { // handle rejected promises
-        //     console.log(err);
-        //     this.props.history.push('/error'); // push to history stack
-        //   });
+        context.data.deleteCourse(emailAddress, password, this.state.course.id)
+          .then( () => {
+            this.props.history.push('/courses');
+          })
+          .catch( err => { // handle rejected promises
+            console.log(err);
+            this.props.history.push('/error'); // push to history stack
+          });
     };
 }
