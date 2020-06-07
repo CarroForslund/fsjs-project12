@@ -37,8 +37,8 @@ function App () {
     <Router>
       <div>
         <HeaderWithContext />
-        <Redirect from='/' to='/courses' />
         <Switch>
+          <Redirect exact from='/' to='/courses' />
           <Route exact path='/courses' component={ CoursesWithContext } />
           <PrivateRoute path='/courses/create' component={ CreateCourseWithContext } />
           <Route exact path='/courses/:id' component={ CourseDetailWithContext } />

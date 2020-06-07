@@ -46,28 +46,32 @@ export default class UserSignUp extends React.Component {
                         type="text"
                         value={firstName} 
                         onChange={this.change} 
-                        placeholder="First Name" />
+                        placeholder="First Name"
+                        required />
                         <input 
                         id="lastName" 
                         name="lastName" 
                         type="text"
                         value={lastName} 
                         onChange={this.change} 
-                        placeholder="Last Name" />
+                        placeholder="Last Name"
+                        required />
                         <input 
                         id="emailAddress" 
                         name="emailAddress" 
                         type="text"
                         value={emailAddress} 
                         onChange={this.change} 
-                        placeholder="Email Address" />
+                        placeholder="Email Address"
+                        required />
                         <input 
                         id="password" 
                         name="password"
                         type="password"
                         value={password} 
                         onChange={this.change} 
-                        placeholder="Password" />
+                        placeholder="Password"
+                        required />
                         <input 
                         id="confirmPassword" 
                         name="confirmPassword"
@@ -75,6 +79,7 @@ export default class UserSignUp extends React.Component {
                         value={confirmPassword} 
                         onChange={this.change} 
                         placeholder="Confirm Password"
+                        required
                       />
                       </React.Fragment>
                     )} />

@@ -40,7 +40,7 @@ export default class CreateCourse extends React.Component {
             <div className="bounds course--detail">
                 <h1>Create Course</h1>
                 <div>
-                    <div>
+                    {/* <div>
                         <h2 className="validation--errors--label">Validation errors</h2>
                         <div className="validation-errors">
                             <ul>
@@ -48,7 +48,7 @@ export default class CreateCourse extends React.Component {
                                 <li>Please provide a value for "Description"</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                     <Form 
                         cancel={this.cancel}
                         errors={errors}
@@ -67,6 +67,7 @@ export default class CreateCourse extends React.Component {
                                             onChange={this.change}
                                             placeholder="Course title..." 
                                             className="input-title course--title--input"
+                                            required
                                         />
                                         <p>
                                             By {this.state.firstName + ' ' + this.state.lastName}
@@ -80,6 +81,7 @@ export default class CreateCourse extends React.Component {
                                                 type="text"
                                                 onChange={this.change} 
                                                 placeholder="Course description..."
+                                                required
                                             />
                                         </div>
                                     </div>

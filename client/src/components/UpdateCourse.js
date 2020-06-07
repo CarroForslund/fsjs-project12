@@ -63,7 +63,7 @@ export default class UpdateCourse extends React.Component {
             <div className="bounds course--detail">
                 <h1>Update Course</h1>
                 <div>
-                    <div>
+                    {/* <div>
                         <h2 className="validation--errors--label">Validation errors</h2>
                         <div className="validation-errors">
                             <ul>
@@ -71,7 +71,7 @@ export default class UpdateCourse extends React.Component {
                                 <li>Please provide a value for "Description"</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                     <Form 
                         cancel={this.cancel}
                         errors={errors}
