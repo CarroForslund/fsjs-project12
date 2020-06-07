@@ -49,7 +49,7 @@ function App () {
           <Route path='/forbidden' component={ Forbidden } />
           <Route path="/notfound" component={ NotFound } />
           <Route path="/error" component={ UnhandledError } />
-          <Route component={ NotFound } />
+          <Redirect to='/notfound' />
         </Switch>
       </div>
     </Router>
