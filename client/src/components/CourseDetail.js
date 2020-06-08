@@ -49,46 +49,53 @@ export default class CourseDetail extends React.Component {
     render(){
         const course = this.state.course;
         const courseUser = this.state.courseUser;
-        
-        return(
-            <div>
-                <div className="actions--bar">
-                    <div className="bounds">
-                    <div className="grid-100">
-                        {this.editButtons()}
-                        <Link className="button button-secondary" to="/courses">Return to List</Link>
-                    </div>
-                    </div>
-                </div>
-                <div className="bounds course--detail">
-                    <div className="grid-66">
-                    <div className="course--header">
-                        <h4 className="course--label">Course</h4>
-                        <h3 className="course--title">{course.title}</h3>
-                        <p>By {courseUser.firstName + ' ' + courseUser.lastName}</p>
-                    </div>
-                    <div className="course--description">
-                        {<ReactMarkdown source={course.description}/>}
-                    </div>
-                    </div>
-                    <div className="grid-25 grid-right">
-                    <div className="course--stats">
-                        <ul className="course--stats--list">
-                        <li className="course--stats--list--item">
-                            <h4>Estimated Time</h4>
-                            <h3>{course.estimatedTime}</h3>
-                        </li>
-                        <li className="course--stats--list--item">
-                            <h4>Materials Needed</h4>
-                            {<ReactMarkdown source={course.materialsNeeded}/>}
-                        </li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-            </div>
 
-        );
+        if(course != ''){
+            return(
+                <div>
+                    <div className="actions--bar">
+                        <div className="bounds">
+                        <div className="grid-100">
+                            {this.editButtons()}
+                            <Link className="button button-secondary" to="/courses">Return to List</Link>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="bounds course--detail">
+                        <div className="grid-66">
+                        <div className="course--header">
+                            <h4 className="course--label">Course</h4>
+                            <h3 className="course--title">{course.title}</h3>
+                            <p>By {courseUser.firstName + ' ' + courseUser.lastName}</p>
+                        </div>
+                        <div className="course--description">
+                            {<ReactMarkdown source={course.description}/>}
+                        </div>
+                        </div>
+                        <div className="grid-25 grid-right">
+                        <div className="course--stats">
+                            <ul className="course--stats--list">
+                            <li className="course--stats--list--item">
+                                <h4>Estimated Time</h4>
+                                <h3>{course.estimatedTime}</h3>
+                            </li>
+                            <li className="course--stats--list--item">
+                                <h4>Materials Needed</h4>
+                                {<ReactMarkdown source={course.materialsNeeded}/>}
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+    
+            );
+        } else {
+            this.props.history.push('/notfound');
+            return (null);    
+        }
+        
+        
     };
 
     editButtons(){
