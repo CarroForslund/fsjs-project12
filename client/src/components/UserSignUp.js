@@ -47,7 +47,9 @@ export default class UserSignUp extends React.Component {
                         value={firstName} 
                         onChange={this.change} 
                         placeholder="First Name"
-                        required />
+                        // required 
+
+                        />
                         <input 
                         id="lastName" 
                         name="lastName" 
@@ -55,7 +57,9 @@ export default class UserSignUp extends React.Component {
                         value={lastName} 
                         onChange={this.change} 
                         placeholder="Last Name"
-                        required />
+                        // required 
+
+                        />
                         <input 
                         id="emailAddress" 
                         name="emailAddress" 
@@ -63,7 +67,9 @@ export default class UserSignUp extends React.Component {
                         value={emailAddress} 
                         onChange={this.change} 
                         placeholder="Email Address"
-                        required />
+                        // required
+
+                        />
                         <input 
                         id="password" 
                         name="password"
@@ -71,7 +77,9 @@ export default class UserSignUp extends React.Component {
                         value={password} 
                         onChange={this.change} 
                         placeholder="Password"
-                        required />
+                        // required
+
+                        />
                         <input 
                         id="confirmPassword" 
                         name="confirmPassword"
@@ -79,7 +87,7 @@ export default class UserSignUp extends React.Component {
                         value={confirmPassword} 
                         onChange={this.change} 
                         placeholder="Confirm Password"
-                        required
+                        // required
                       />
                       </React.Fragment>
                     )} />
@@ -110,7 +118,8 @@ export default class UserSignUp extends React.Component {
           emailAddress,
           password,
           confirmPassword,
-      } = this.state; 
+          errors
+      } = this.state;
       
       if(password === confirmPassword){
         // New user payload
@@ -119,11 +128,12 @@ export default class UserSignUp extends React.Component {
           lastName,
           emailAddress,   
           password,
+          errors
         };
 
         context.data.createUser(user)
           .then( errors => {
-            if (errors.length) {
+            if (errors) {
               this.setState({ errors });
             } else {
               console.log(`${firstName} is successfully signed up and authenticated!`);

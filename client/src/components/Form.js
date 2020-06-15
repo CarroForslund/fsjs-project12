@@ -35,19 +35,26 @@ export default (props) => {
 
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
-
+  let errorsArray = null;
   if (errors.length) {
+    console.log(errors);
+    if(errors[0] !== 'Sign-in was unsuccessful'){
+      errorsArray = errors.split(',');
+    }  else {
+      errorsArray = errors;
+    }
+
     errorsDisplay = (
       <div>
         <h2 className="validation--errors--label">Validation errors</h2>
         <div className="validation-errors">
           <ul>
-            {errors.map((error, i) => <li key={i}>{error}</li>)}
+            {errorsArray.map((error, i) => <li key={i}>{error}</li>)}
           </ul>
         </div>
       </div>
     );
+    
   }
-
   return errorsDisplay;
 }

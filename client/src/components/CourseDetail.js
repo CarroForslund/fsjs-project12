@@ -50,7 +50,7 @@ export default class CourseDetail extends React.Component {
         const course = this.state.course;
         const courseUser = this.state.courseUser;
 
-        if(course != ''){
+        if(course !== ''){
             return(
                 <div>
                     <div className="actions--bar">

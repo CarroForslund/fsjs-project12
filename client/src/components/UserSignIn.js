@@ -37,7 +37,9 @@ export default class UserSignIn extends React.Component {
                             value={emailAddress} 
                             onChange={this.change} 
                             placeholder="Email Address"
-                            required />
+                            // required 
+
+                            />
                             <input 
                             id="password" 
                             name="password"
@@ -45,7 +47,9 @@ export default class UserSignIn extends React.Component {
                             value={password} 
                             onChange={this.change} 
                             placeholder="Password"
-                            required />                
+                            // required 
+
+                            />                
                         </React.Fragment>
                     )} />
                     <p>

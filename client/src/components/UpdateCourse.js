@@ -171,6 +171,7 @@ export default class UpdateCourse extends React.Component {
             estimatedTime,
             materialsNeeded,
             userId,
+            errors,
         } = this.state; 
         
         // New course payload
@@ -181,6 +182,7 @@ export default class UpdateCourse extends React.Component {
             estimatedTime,
             materialsNeeded,
             userId,
+            errors,
         };
 
         //Get Credentials
@@ -190,7 +192,9 @@ export default class UpdateCourse extends React.Component {
         context.data.updateCourse(emailAddress, password, courseId, course)
             .then( errors => {
                 if (errors.length) {
-                    this.setState({ errors });
+                    this.setState(() => {
+                        return { errors: [ errors.message ] };
+                    });
                 } else {
                     console.log('Course updated');
                     this.props.history.push('/courses/' + courseId);    

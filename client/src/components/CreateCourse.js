@@ -67,7 +67,7 @@ export default class CreateCourse extends React.Component {
                                             onChange={this.change}
                                             placeholder="Course title..." 
                                             className="input-title course--title--input"
-                                            required
+                                            // required
                                         />
                                         <p>
                                             By {this.state.firstName + ' ' + this.state.lastName}
@@ -81,7 +81,7 @@ export default class CreateCourse extends React.Component {
                                                 type="text"
                                                 onChange={this.change} 
                                                 placeholder="Course description..."
-                                                required
+                                                // required
                                             />
                                         </div>
                                     </div>
@@ -145,6 +145,7 @@ export default class CreateCourse extends React.Component {
             description,
             estimatedTime,
             materialsNeeded,
+            errors,
         } = this.state; 
         
         // New course payload
@@ -153,6 +154,7 @@ export default class CreateCourse extends React.Component {
             description,
             estimatedTime,
             materialsNeeded,
+            errors,
         };
 
         //Get Credentials
@@ -164,7 +166,9 @@ export default class CreateCourse extends React.Component {
         context.data.createCourse(emailAddress, password, course)
             .then( errors => {
                 if (errors.length) {
-                    this.setState({ errors });
+                    this.setState(() => {
+                        return { errors: errors.message };
+                    });
                 } else {
                     console.log('Course created');
                     this.props.history.push('/courses');    
