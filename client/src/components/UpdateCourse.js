@@ -63,15 +63,6 @@ export default class UpdateCourse extends React.Component {
             <div className="bounds course--detail">
                 <h1>Update Course</h1>
                 <div>
-                    {/* <div>
-                        <h2 className="validation--errors--label">Validation errors</h2>
-                        <div className="validation-errors">
-                            <ul>
-                                <li>Please provide a value for "Title"</li>
-                                <li>Please provide a value for "Description"</li>
-                            </ul>
-                        </div>
-                    </div> */}
                     <Form 
                         cancel={this.cancel}
                         errors={errors}
@@ -191,7 +182,8 @@ export default class UpdateCourse extends React.Component {
   
         context.data.updateCourse(emailAddress, password, courseId, course)
             .then( errors => {
-                if (errors.length) {
+                console.log(errors);
+                if (errors) {
                     this.setState(() => {
                         return { errors: [ errors.message ] };
                     });
