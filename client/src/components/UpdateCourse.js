@@ -18,7 +18,7 @@ export default class UpdateCourse extends React.Component {
         estimatedTime: '',
         materialsNeeded: '',
         userId: '',
-        errors: [],
+        errors: '',
     }
 
     componentDidMount() {
@@ -184,9 +184,7 @@ export default class UpdateCourse extends React.Component {
             .then( errors => {
                 console.log(errors);
                 if (errors) {
-                    this.setState(() => {
-                        return { errors: [ errors.message ] };
-                    });
+                    this.setState({ errors });
                 } else {
                     console.log('Course updated');
                     this.props.history.push('/courses/' + courseId);    

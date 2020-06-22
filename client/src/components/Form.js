@@ -36,11 +36,14 @@ export default (props) => {
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
   let errorsArray = null;
+  console.log(errors);
   if (errors.length) {
-    console.log(errors);
-    if(errors[0] !== 'Sign-in was unsuccessful' &&  
-        errors[0] !== 'Validation error. Title and description are both required to be able to update this course.' &&
-        errors[0] !== undefined){
+    
+    // if(errors[0] !== 'Sign-in was unsuccessful' &&  
+    //     errors[0] !== 'Validation error. Title and description are both required to be able to update this course.' &&
+    //     errors[0] !== undefined){
+    //   errorsArray = errors.split(',');
+    if (errors.length > 0) {
       errorsArray = errors.split(',');
     }  else {
       errorsArray = errors;

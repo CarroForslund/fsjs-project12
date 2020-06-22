@@ -16,7 +16,7 @@ export default class CreateCourse extends React.Component {
         estimatedTime: '',
         materialsNeeded: '',
         userId: '',
-        errors: [],
+        errors: '',
         firstName: '',
         lastName: '',
     }
@@ -40,15 +40,6 @@ export default class CreateCourse extends React.Component {
             <div className="bounds course--detail">
                 <h1>Create Course</h1>
                 <div>
-                    {/* <div>
-                        <h2 className="validation--errors--label">Validation errors</h2>
-                        <div className="validation-errors">
-                            <ul>
-                                <li>Please provide a value for "Title"</li>
-                                <li>Please provide a value for "Description"</li>
-                            </ul>
-                        </div>
-                    </div> */}
                     <Form 
                         cancel={this.cancel}
                         errors={errors}
@@ -161,11 +152,9 @@ export default class CreateCourse extends React.Component {
         const emailAddress = context.authenticatedUser.emailAddress;
         const password = context.authenticatedUser.password;
         
-        console.log(emailAddress);
-        console.log(password);
         context.data.createCourse(emailAddress, password, course)
             .then( errors => {
-                if (errors.length) {
+                if (errors) {
                     this.setState(() => {
                         return { errors: errors.message };
                     });
