@@ -28,6 +28,9 @@ export default class CourseDetail extends React.Component {
 
         context.data.getCourse(this.props.match.params.id)
           .then( course => {
+            if(course === 'Course not found'){
+                this.props.history.push('/notfound');    
+            }
             if (course && this._isMounted) {
                 this.setState({ 
                     course: course,
@@ -48,10 +51,6 @@ export default class CourseDetail extends React.Component {
 
     render(){
         const { course, courseUser } = this.state;
-        if(course === 'Course not found'){
-            this.props.history.push('/notfound');
-            return (null);    
-        }
         return(
             <div>
                 <div className="actions--bar">

@@ -27,6 +27,12 @@ export default class UpdateCourse extends React.Component {
 
         context.data.getCourse(this.props.match.params.id)
           .then( course => {
+            if(course === 'Course not found'){
+                this.props.history.push('/notfound');    
+            }
+            if(course && course.userId !== context.authenticatedUser.id) {
+                this.props.history.push('/forbidden');
+            }
             if (course && this._isMounted) {
                 this.setState({ 
                     courseId: course.id,
@@ -197,7 +203,6 @@ export default class UpdateCourse extends React.Component {
     } 
       
     cancel = () => {
-        const { from } = this.props.location.state || { from: { pathname: '/courses' } };
-        this.props.history.push(from);
+        this.props.history.push('/courses/' + this.state.courseId);
     }
 }
