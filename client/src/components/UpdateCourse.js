@@ -27,11 +27,14 @@ export default class UpdateCourse extends React.Component {
 
         context.data.getCourse(this.props.match.params.id)
           .then( course => {
+            console.log(course);
             if(course === 'Course not found'){
-                this.props.history.push('/notfound');    
+                this.props.history.push('/notfound');
+                return null;   
             }
             if(course && course.userId !== context.authenticatedUser.id) {
                 this.props.history.push('/forbidden');
+                return null;
             }
             if (course && this._isMounted) {
                 this.setState({ 
